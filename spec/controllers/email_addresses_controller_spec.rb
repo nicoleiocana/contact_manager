@@ -103,22 +103,24 @@ RSpec.describe EmailAddressesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:bob) { Person.create(first_name: 'Bob', last_name: 'Jones') }
-      let(:valid_attributes) { { address: 'example@example.com', person_id: bob.id} }
-      let(:new_attributes) { { address: 'new_example@example.com', person_id: bob.id} }
+      let(:valid_attributes) { { address: 'first@example.com', person_id: bob.id} }
+      let(:new_attributes) { { address: 'second@example.com', person_id: bob.id} }
       
 
       it "updates the requested email_address" do
         email_address = EmailAddress.create! valid_attributes
         put :update, params: {id: email_address.to_param, email_address: new_attributes}, session: valid_session
         email_address.reload
-        expect(email_address.address).to eq('new_example@example.com')
+        expect(email_address.address).to eq('second@example.com')
         expect(email_address.person_id).to eq(bob.id)
       end
 
-      it "redirects to the email_address" do
+      it "redirects to the email address's person" do
+        bob = Person.create(first_name: 'Bob', last_name: 'Jones')
+        valid_attributes = { address: 'first@example.com', person_id: bob.id}
         email_address = EmailAddress.create! valid_attributes
         put :update, params: {id: email_address.to_param, email_address: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(email_address)
+        expect(response).to redirect_to(bob)
       end
     end
 
