@@ -11,10 +11,14 @@ describe 'the person view', type: :feature do
     end
     
     it 'has list items for each address' do
-          person.email_addresses.each do |email|
-            expect(page).to have_selector('li', text: email.address)
-         end
-      end
+        person.email_addresses.each do |email|
+          expect(page).to have_selector('li', text: email.address)
+       end
+    end
+    
+    it 'has an add email address link' do
+      expect(page).to have_link('New email address', href: new_email_address_path(person_id: person.id))
+    end
     
   end
   
