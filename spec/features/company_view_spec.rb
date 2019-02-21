@@ -52,6 +52,8 @@ describe 'the company view', type: :feature do
          end
       end
     end
+    
+    
   
 end
 

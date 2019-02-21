@@ -6,12 +6,12 @@ RSpec.describe "phone_numbers/index", type: :view do
       PhoneNumber.create!(
         :number => "Number",
         :contact_id => 2,
-        :contact_type => 'Person'
+        :contact_type => "Company"
       ),
       PhoneNumber.create!(
         :number => "Number",
         :contact_id => 2,
-        :contact_type => 'Person'
+        :contact_type => "Company"
       )
     ])
   end

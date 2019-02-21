@@ -5,7 +5,7 @@ RSpec.describe "phone_numbers/show", type: :view do
     @phone_number = assign(:phone_number, PhoneNumber.create!(
       :number => "Number",
       :contact_id => 2,
-      :contact_type => 'Person'
+      :contact_type => "Company"
     ))
   end
 
